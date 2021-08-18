@@ -29,8 +29,8 @@ namespace SG
             playerLocomotion.rigidbody.velocity = Vector3.zero;
             animatorHandler.PlayTargetAnimation("PickUpItem", true);
             playerInventory.weaponsInventory.Add(weapon);
-            playerManager.itemInteractableGameobject.GetComponentInChildren<Text>().text = weapon.itemName;
-            playerManager.itemInteractableGameobject.SetActive(true);
+            playerManager.itemInteractableGameObject.GetComponentInChildren<Text>().text = weapon.itemName;
+            playerManager.itemInteractableGameObject.SetActive(true);
             Destroy(gameObject);
 
 

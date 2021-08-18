@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 namespace SG
 {
@@ -10,12 +8,12 @@ namespace SG
     {
         InputHandler inputHandler;
         Animator anim;
-        CameraHolder cameraHolder;
+        CameraHolder cameraHandler;
         PlayerLocomotion playerLocomotion;
 
         InteractableUI interactableUI;
-        public GameObject interactableUIGameobject;
-        public GameObject itemInteractableGameobject;
+        public GameObject interactableUIGameObject;
+        public GameObject itemInteractableGameObject;
 
         public bool isInteracting;
 
@@ -27,7 +25,7 @@ namespace SG
 
         private void Awake()
         {
-            cameraHolder = FindObjectOfType<CameraHolder>();
+            cameraHandler = FindObjectOfType<CameraHolder>();
         }
 
         void Start()
@@ -38,18 +36,18 @@ namespace SG
             interactableUI = FindObjectOfType<InteractableUI>();
         }
 
-        // Update is called once per frame
+
         void Update()
         {
             float delta = Time.deltaTime;
-
             isInteracting = anim.GetBool("isInteracting");
             canDoCombo = anim.GetBool("canDoCombo");
+            anim.SetBool("isInAir", isInAir);
 
             inputHandler.TickInput(delta);
-            playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
-            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            //playerLocomotion.HandleJumping();
+
             CheckForInteractableObject();
         }
 
@@ -57,25 +55,30 @@ namespace SG
         {
             float delta = Time.fixedDeltaTime;
 
-            if (cameraHolder != null)
-            {
-                cameraHolder.FollowTarget(delta);
-                cameraHolder.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-            }
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            playerLocomotion.HandleMovement(delta);
         }
 
         private void LateUpdate()
         {
             inputHandler.rollFlag = false;
-            inputHandler.sprintFlag = false;
             inputHandler.rb_Input = false;
             inputHandler.rt_Input = false;
-            isSprinting = inputHandler.b_Input;
             inputHandler.d_Pad_Up = false;
             inputHandler.d_Pad_Down = false;
-            inputHandler.d_Pad_Right = false;
             inputHandler.d_Pad_Left = false;
-            inputHandler.f_Input = false;
+            inputHandler.d_Pad_Right = false;
+            inputHandler.a_Input = false;
+            inputHandler.jump_Input = false;
+            inputHandler.inventory_Input = false;
+
+            float delta = Time.deltaTime;
+
+            if (cameraHandler != null)
+            {
+                cameraHandler.FollowTarget(delta);
+                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+            }
 
             if (isInAir)
             {
@@ -87,9 +90,9 @@ namespace SG
         {
             RaycastHit hit;
 
-            if(Physics.SphereCast(transform.position, 0.3f, transform.forward,out hit, 1f, cameraHolder.ignoreLayers))
+            if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f))
             {
-                if(hit.collider.tag == "Interactable")
+                if (hit.collider.tag == "Interactable")
                 {
                     Interactable interactableObject = hit.collider.GetComponent<Interactable>();
 
@@ -97,9 +100,9 @@ namespace SG
                     {
                         string interactableText = interactableObject.interactableText;
                         interactableUI.interactableText.text = interactableText;
-                        interactableUIGameobject.SetActive(true);
+                        interactableUIGameObject.SetActive(true);
 
-                        if (inputHandler.f_Input)
+                        if(inputHandler.a_Input)
                         {
                             hit.collider.GetComponent<Interactable>().Interact(this);
                         }
@@ -108,16 +111,18 @@ namespace SG
             }
             else
             {
-                if(interactableUIGameobject != null)
+                if (interactableUIGameObject != null)
                 {
-                    interactableUIGameobject.SetActive(false);
+                    interactableUIGameObject.SetActive(false);
                 }
 
-                if(itemInteractableGameobject != null && inputHandler.f_Input)
+                if (itemInteractableGameObject != null && inputHandler.a_Input)
                 {
-                    itemInteractableGameobject.SetActive(false);
+                    itemInteractableGameObject.SetActive(false);
                 }
             }
         }
+
+
     }
 }
