@@ -8,6 +8,7 @@ namespace SG
 {
     public class EnemyLocomotionManager : MonoBehaviour
     {
+        /*
         EnemyManager enemyManager;
 
         public CharacterStats currentTarget;
@@ -41,5 +42,6 @@ namespace SG
                 }
             }
         }
+        */
     }
 }
