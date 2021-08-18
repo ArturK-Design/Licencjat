@@ -7,7 +7,10 @@ namespace SG
     public class CameraHolder : MonoBehaviour
     {
         InputHandler inputHandler;
+<<<<<<< HEAD
         PlayerManager playerManager;
+=======
+>>>>>>> parent of 3a49f36 (Revert "changes")
 
         public Transform targetTransform;
         public Transform cameraTransform;
@@ -15,7 +18,10 @@ namespace SG
         private Transform myTransform;
         private Vector3 cameraTransformPosition;
         public LayerMask ignoreLayers;
+<<<<<<< HEAD
         public LayerMask enviromentLayer;
+=======
+>>>>>>> parent of 3a49f36 (Revert "changes")
         private Vector3 cameraFollowVelocity = Vector3.zero;
 
         public float lookSpeed = 0.1f;
@@ -32,6 +38,7 @@ namespace SG
         public float cameraSphereRadius = 0.2f;
         public float cameraCollisionOffSet = 0.2f;
         public float minimumCollisionOffset = 0.2f;
+<<<<<<< HEAD
         public float lockedPivotPosition = 2.25f;
         public float unlockedPivotPosition = 1.65f;
 
@@ -43,6 +50,15 @@ namespace SG
         public Transform rightLockTarget;
         public float maximumLockOnDistance = 30;
 
+=======
+
+        public Transform currentLockOnTarget;
+
+        List<CharacterManager> availableTargets = new List<CharacterManager>();
+        public Transform nearestLockOnTarget;
+        public float maximumLockOnDistance = 30;
+
+>>>>>>> parent of 3a49f36 (Revert "changes")
 
         private void Awake()
         {
@@ -134,8 +150,11 @@ namespace SG
         public void HandleLockOn()
         {
             float shortestDistance = Mathf.Infinity;
+<<<<<<< HEAD
             float shortestDistanceOfLeftTarget = Mathf.Infinity;
             float shortestDistanceOfRightTarget = Mathf.Infinity;
+=======
+>>>>>>> parent of 3a49f36 (Revert "changes")
 
             Collider[] colliders = Physics.OverlapSphere(targetTransform.position, 26);
 
@@ -154,6 +173,7 @@ namespace SG
                         && viewableAngle > -50 && viewableAngle < 50 
                         && distanceFromTarget <= maximumLockOnDistance)
                     {
+<<<<<<< HEAD
                         if (Physics.Linecast(playerManager.lockOnTransform.position, character.lockOnTransform.position, out hit))
                         {
                             Debug.DrawLine(playerManager.lockOnTransform.position, character.lockOnTransform.position);
@@ -167,6 +187,9 @@ namespace SG
                                 availableTargets.Add(character);
                             }
                         }
+=======
+                        availableTargets.Add(character);
+>>>>>>> parent of 3a49f36 (Revert "changes")
                     }
                 }
             }
@@ -180,6 +203,7 @@ namespace SG
                     shortestDistance = distanceFromTarget;
                     nearestLockOnTarget = availableTargets[k].lockOnTransform;
                 }
+<<<<<<< HEAD
 
                 if (inputHandler.lockOnFlag)
                 {
@@ -199,6 +223,8 @@ namespace SG
                         rightLockTarget = availableTargets[k].lockOnTransform;
                     }
                 }
+=======
+>>>>>>> parent of 3a49f36 (Revert "changes")
             }
         }
 
@@ -209,6 +235,7 @@ namespace SG
             currentLockOnTarget = null;
         }
 
+<<<<<<< HEAD
         public void SetCameraHeight()
         {
             Vector3 velocity = Vector3.zero;
@@ -225,5 +252,7 @@ namespace SG
             }
         }
 
+=======
+>>>>>>> parent of 3a49f36 (Revert "changes")
     }
 }

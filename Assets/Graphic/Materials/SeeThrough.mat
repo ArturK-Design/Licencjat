@@ -98,5 +98,9 @@ Material:
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+<<<<<<< HEAD
     - _Position: {r: 0.50717443, g: 0.187092, b: 3.7015991, a: 0}
+=======
+    - _Position: {r: 0.46085918, g: 0.025151195, b: 2.3542407, a: 0}
+>>>>>>> parent of 3a49f36 (Revert "changes")
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
