@@ -7,36 +7,39 @@ namespace SG
     public class CameraHolder : MonoBehaviour
     {
         InputHandler inputHandler;
+
         public Transform targetTransform;
         public Transform cameraTransform;
         public Transform cameraPivotTransform;
         private Transform myTransform;
         private Vector3 cameraTransformPosition;
         public LayerMask ignoreLayers;
+        private Vector3 cameraFollowVelocity = Vector3.zero;
 
-        public static CameraHolder singleton;
+        public float lookSpeed = 0.1f;
+        public float followSpeed = 0.1f;
+        public float pivotSpeed = 0.03f;
 
-        public float lookSpeed = .1f;
-        public float followSpeed = .1f;
-        public float pivotSpeed = .03f;
-
+        private float targetPosition;
         private float defaultPosition;
         private float lookAngle;
         private float pivotAngle;
         public float minimumPivot = -35;
         public float maximumPivot = 35;
 
-        public Transform currentLockOnTarget;
-        public Transform leftLockTarget;
-        public Transform rightLockTarget;
+        public float cameraSphereRadius = 0.2f;
+        public float cameraCollisionOffSet = 0.2f;
+        public float minimumCollisionOffset = 0.2f;
 
-        public float maximumLockOnDistance = 3;
+        public Transform currentLockOnTarget;
+
+        List<CharacterManager> availableTargets = new List<CharacterManager>();
         public Transform nearestLockOnTarget;
-        List<CharacterManager> avilableTargets = new List<CharacterManager>();
+        public float maximumLockOnDistance = 30;
+
 
         private void Awake()
         {
-            singleton = this;
             myTransform = transform;
             defaultPosition = cameraTransform.localPosition.z;
             ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
@@ -46,8 +49,10 @@ namespace SG
 
         public void FollowTarget(float delta)
         {
-            Vector3 targetPosition = Vector3.Lerp(myTransform.position, targetTransform.position, delta / followSpeed);
+            Vector3 targetPosition = Vector3.SmoothDamp(myTransform.position, targetTransform.position, ref cameraFollowVelocity, delta / followSpeed);
             myTransform.position = targetPosition;
+
+            HandleCameraCollisions(delta);
         }
 
         public void HandleCameraRotation(float delta, float mouseXInput, float mouseYInput)
@@ -61,6 +66,7 @@ namespace SG
                 Vector3 rotation = Vector3.zero;
                 rotation.y = lookAngle;
                 Quaternion targetRotation = Quaternion.Euler(rotation);
+                myTransform.rotation = targetRotation;
 
                 rotation = Vector3.zero;
                 rotation.x = pivotAngle;
@@ -73,14 +79,13 @@ namespace SG
                 float velocity = 0;
 
                 Vector3 dir = currentLockOnTarget.position - transform.position;
-
                 dir.Normalize();
                 dir.y = 0;
 
                 Quaternion targetRotation = Quaternion.LookRotation(dir);
                 transform.rotation = targetRotation;
 
-                dir = currentLockOnTarget.position = cameraPivotTransform.position;
+                dir = currentLockOnTarget.position - cameraPivotTransform.position;
                 dir.Normalize();
 
                 targetRotation = Quaternion.LookRotation(dir);
@@ -88,70 +93,75 @@ namespace SG
                 eulerAngle.y = 0;
                 cameraPivotTransform.localEulerAngles = eulerAngle;
             }
-            
+        }
+
+        private void HandleCameraCollisions(float delta)
+        {
+            targetPosition = defaultPosition;
+            RaycastHit hit;
+            Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
+            direction.Normalize();
+
+            if (Physics.SphereCast
+                (cameraPivotTransform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(targetPosition)
+                , ignoreLayers))
+            {
+                float dis = Vector3.Distance(cameraPivotTransform.position, hit.point);
+                targetPosition = -(dis - cameraCollisionOffSet);
+            }
+
+            if (Mathf.Abs(targetPosition) < minimumCollisionOffset)
+            {
+                targetPosition = -minimumCollisionOffset;
+            }
+
+            cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / 0.2f);
+            cameraTransform.localPosition = cameraTransformPosition;
         }
 
         public void HandleLockOn()
         {
             float shortestDistance = Mathf.Infinity;
-            float shortestDistanceOfLeftTarget = Mathf.Infinity;
-            float shortestDistanceOfRightTarget = Mathf.Infinity;
-
 
             Collider[] colliders = Physics.OverlapSphere(targetTransform.position, 26);
 
-            for(int i = 0; i < colliders.Length; i++)
+            for (int i = 0; i < colliders.Length; i++)
             {
                 CharacterManager character = colliders[i].GetComponent<CharacterManager>();
 
-                if(character != null)
+                if (character != null)
                 {
                     Vector3 lockTargetDirection = character.transform.position - targetTransform.position;
                     float distanceFromTarget = Vector3.Distance(targetTransform.position, character.transform.position);
                     float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
 
-                    if (character.transform.root != targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance)
+                    if (character.transform.root != targetTransform.transform.root 
+                        && viewableAngle > -50 && viewableAngle < 50 
+                        && distanceFromTarget <= maximumLockOnDistance)
                     {
-                        avilableTargets.Add(character);
+                        availableTargets.Add(character);
                     }
                 }
             }
 
-            for(int k = 0; k < avilableTargets.Count; k++)
+            for (int k = 0; k < availableTargets.Count; k++)
             {
-                float distanceFromTarget = Vector3.Distance(targetTransform.position, avilableTargets[k].transform.position);
-                if(distanceFromTarget < shortestDistance)
+                float distanceFromTarget = Vector3.Distance(targetTransform.position, availableTargets[k].transform.position);
+
+                if (distanceFromTarget < shortestDistance)
                 {
                     shortestDistance = distanceFromTarget;
-                    nearestLockOnTarget = avilableTargets[k].lockOnTransform;
+                    nearestLockOnTarget = availableTargets[k].lockOnTransform;
                 }
-
-                if (inputHandler.lockOnFlag) {
-                    Vector3 rlativeEnemyPosition = currentLockOnTarget.InverseTransformPoint(avilableTargets[k].transform.position);
-                    var distanceFromLeftTarget = currentLockOnTarget.transform.position.x - avilableTargets[k].transform.position.x;
-                    var distanceFromRightTarget = currentLockOnTarget.transform.position.x + avilableTargets[k].transform.position.x;
-
-                    if(rlativeEnemyPosition.x > 0.00 && distanceFromLeftTarget < shortestDistanceOfLeftTarget)
-                    {
-                        shortestDistanceOfLeftTarget = distanceFromLeftTarget;
-                        leftLockTarget = avilableTargets[k].lockOnTransform;
-                    }
-
-                    if (rlativeEnemyPosition.x > 0.00 && distanceFromRightTarget < shortestDistanceOfRightTarget)
-                    {
-                        shortestDistanceOfRightTarget = distanceFromRightTarget;
-                        leftLockTarget = avilableTargets[k].lockOnTransform;
-                    }
-                }
-                
             }
         }
 
         public void ClearLockOnTargets()
         {
-            avilableTargets.Clear();
+            availableTargets.Clear();
             nearestLockOnTarget = null;
             currentLockOnTarget = null;
         }
+
     }
 }
