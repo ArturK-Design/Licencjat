@@ -30,7 +30,7 @@ namespace SG
         private void Start()
         {
             rightWeapon = unarmedWeapon;
-            leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
+            leftWeapon = unarmedWeapon;
             currentRightWeaponIndex = 0;
             currentLeftWeaponIndex = 0;
         }
