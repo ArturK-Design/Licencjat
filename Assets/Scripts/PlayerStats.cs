@@ -9,7 +9,6 @@ namespace SG
         HealthBar healthBar;
         StaminaBar staminaBar;
         AnimatorHandler animatorHandler;
-        public bool godMod;
 
         private void Awake()
         {
