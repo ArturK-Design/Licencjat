@@ -1,18 +1,14 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace SG
 {
     public class EnemyLocomotionManager : MonoBehaviour
     {
-        /*
         EnemyManager enemyManager;
 
         public CharacterStats currentTarget;
-
         public LayerMask detectionLayer;
 
         private void Awake()
@@ -24,24 +20,23 @@ namespace SG
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.detectionRadius, detectionLayer);
 
-            for(int i = 0; i<colliders.Length; i++)
+            for (int i = 0; i < colliders.Length; i++)
             {
                 CharacterStats characterStats = colliders[i].transform.GetComponent<CharacterStats>();
 
-                if(characterStats != null)
+                if (characterStats != null)
                 {
+                    //CHECK FOR TEAM ID
 
-
-                    Vector3 targetDirection = characterStats.transform.position = transform.position;
+                    Vector3 targetDirection = characterStats.transform.position - transform.position;
                     float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
-                    if(viewableAngle > enemyManager.minimumDetectionAngle && viewableAngle < enemyManager.maximumDetectionAngle)
+                    if (viewableAngle > enemyManager.minimumDetectionAngle && viewableAngle < enemyManager.maximumDetectionAngle)
                     {
                         currentTarget = characterStats;
                     }
                 }
             }
         }
-        */
     }
 }

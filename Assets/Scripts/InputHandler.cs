@@ -19,6 +19,8 @@ namespace SG
         public bool jump_Input;
         public bool inventory_Input;
         public bool lockOnInput;
+        public bool right_Stick_Right_Input;
+        public bool right_Stick_Left_Input;
 
         public bool d_Pad_Up;
         public bool d_Pad_Down;
@@ -62,10 +64,12 @@ namespace SG
                 inputActions.PlayerActions.RT.performed += i => rt_Input = true;
                 inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
                 inputActions.PlayerQuickSlots.DPadLeft.performed += i => d_Pad_Left = true;
-                //inputActions.PlayerActions.A.performed += i => a_Input = true;
+                inputActions.PlayerActions.F_Input.performed += i => a_Input = true;
                 //inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
                 //inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
                 inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+                inputActions.PlayerMovement.LockOnTargetRight.performed += i => right_Stick_Right_Input = true;
+                inputActions.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
             }
 
             inputActions.Enable();
@@ -106,7 +110,7 @@ namespace SG
             }
             else
             {
-                if(rollInputTimer > 0 && rollInputTimer < 0.5f)
+                if (rollInputTimer > 0 && rollInputTimer < 0.5f)
                 {
                     sprintFlag = false;
                     rollFlag = true;
@@ -119,9 +123,9 @@ namespace SG
         private void HandleAttackInput(float delta)
         {
 
-            if(rb_Input)
+            if (rb_Input)
             {
-                if(playerManager.canDoCombo)
+                if (playerManager.canDoCombo)
                 {
                     comboFlag = true;
                     playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
@@ -139,7 +143,7 @@ namespace SG
                 }
             }
 
-            if(rt_Input)
+            if (rt_Input)
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
             }
@@ -151,7 +155,7 @@ namespace SG
             {
                 playerInventory.ChangeRightWeapon();
             }
-            else if(d_Pad_Left)
+            else if (d_Pad_Left)
             {
                 playerInventory.ChangeLeftWeapon();
             }
@@ -182,7 +186,6 @@ namespace SG
         {
             if (lockOnInput && lockOnFlag == false)
             {
-                cameraHolder.ClearLockOnTargets();
                 lockOnInput = false;
                 cameraHolder.HandleLockOn();
                 if (cameraHolder.nearestLockOnTarget != null)
@@ -196,6 +199,26 @@ namespace SG
                 lockOnInput = false;
                 lockOnFlag = false;
                 cameraHolder.ClearLockOnTargets();
+            }
+
+            if (lockOnFlag && right_Stick_Left_Input)
+            {
+                right_Stick_Left_Input = false;
+                cameraHolder.HandleLockOn();
+                if (cameraHolder.leftLockTarget != null)
+                {
+                    cameraHolder.currentLockOnTarget = cameraHolder.leftLockTarget;
+                }
+            }
+
+            if (lockOnFlag && right_Stick_Right_Input)
+            {
+                right_Stick_Right_Input = false;
+                cameraHolder.HandleLockOn();
+                if (cameraHolder.rightLockTarget != null)
+                {
+                    cameraHolder.currentLockOnTarget = cameraHolder.rightLockTarget;
+                }
             }
         }
     }

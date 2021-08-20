@@ -6,7 +6,6 @@ namespace SG
 {
     public class EnemyStats : CharacterStats
     {
-
         Animator animator;
 
         private void Awake()
@@ -14,7 +13,7 @@ namespace SG
             animator = GetComponentInChildren<Animator>();
         }
 
-        private void Start()
+        void Start()
         {
             maxHealth = SetMaxHealthFromHealthLevel();
             currentHealth = maxHealth;
@@ -23,7 +22,6 @@ namespace SG
         private int SetMaxHealthFromHealthLevel()
         {
             maxHealth = healthLevel * 10;
-
             return maxHealth;
         }
 
@@ -31,14 +29,13 @@ namespace SG
         {
             currentHealth = currentHealth - damage;
 
-            
-
             animator.Play("Damage_01");
-            Debug.Log("hit");
 
-            if(currentHealth <= 0)
+            if (currentHealth <= 0)
             {
+                currentHealth = 0;
                 animator.Play("Dead_01");
+                //HANDLE PLAYER DEATH
             }
         }
     }

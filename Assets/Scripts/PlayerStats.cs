@@ -6,11 +6,10 @@ namespace SG
 {
     public class PlayerStats : CharacterStats
     {
-
-        public HealthBar healthBar;
-        public StaminaBar staminaBar;
-
+        HealthBar healthBar;
+        StaminaBar staminaBar;
         AnimatorHandler animatorHandler;
+        public bool godMod;
 
         private void Awake()
         {
@@ -19,53 +18,49 @@ namespace SG
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
         }
 
-        private void Start()
+        void Start()
         {
             maxHealth = SetMaxHealthFromHealthLevel();
             currentHealth = maxHealth;
             healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetCurrentHealth(currentHealth);
 
-            maxStamina = SetMaxStaminaFromStaminahLevel();
+            maxStamina = SetMaxStaminaFromStaminaLevel();
             currentStamina = maxStamina;
             staminaBar.SetMaxStamina(maxStamina);
+            staminaBar.SetCurrentStamina(currentStamina);
         }
 
         private int SetMaxHealthFromHealthLevel()
         {
             maxHealth = healthLevel * 10;
-
             return maxHealth;
         }
 
-        private int SetMaxStaminaFromStaminahLevel()
+        private int SetMaxStaminaFromStaminaLevel()
         {
-            maxStamina= staminaLevel * 10;
-
+            maxStamina = staminaLevel * 10;
             return maxStamina;
         }
 
         public void TakeDamage(int damage)
         {
-            if (godMod)
-                return;
-
             currentHealth = currentHealth - damage;
-            Debug.Log(currentHealth);
-
             healthBar.SetCurrentHealth(currentHealth);
 
             animatorHandler.PlayTargetAnimation("Damage_01", true);
 
-            if(currentHealth <= 0)
+            if (currentHealth <= 0)
             {
+                currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Dead_01", true);
+                //HANDLE PLAYER DEATH
             }
         }
 
         public void TakeStaminaDamage(int damage)
         {
             currentStamina = currentStamina - damage;
-            //Debug.Log(currentStamina);
             staminaBar.SetCurrentStamina(currentStamina);
         }
     }
