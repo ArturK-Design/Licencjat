@@ -13,7 +13,7 @@ namespace SG
         InputHandler inputHandler;
         PlayerLocomotion playerLocomotion;
         PlayerStats playerStats;
-        int vertical;
+        public int vertical;
         int horizontal;
         public bool canRotate;
 
@@ -33,6 +33,7 @@ namespace SG
         {
             #region Vertical
             float v = 0;
+            Debug.Log(v);
 
             if(verticalMovement > 0 && verticalMovement < 0.55f)
             {
@@ -56,7 +57,8 @@ namespace SG
             }
             #endregion
             #region Horizontl
-            float h = 0;
+            float h = 0; 
+            Debug.Log(h);
 
             if (horizontalMovement > 0 && horizontalMovement < 0.55f)
             {
@@ -85,7 +87,11 @@ namespace SG
                 v = 2;
                 h = horizontalMovement;
             }
-
+            if (!isSprinting && v != 0)
+            {
+                v = 1;
+                h = horizontalMovement;
+            }
             anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
             anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
         }
@@ -130,14 +136,5 @@ namespace SG
             playerLocomotion.rigidbody.velocity = velocity;
         }
 
-        public void StartGodMod()
-        {
-            playerStats.godMod = true;
-        }
-
-        public void StopGodMod()
-        {
-            playerStats.godMod = false;
-        }
     }
 }
