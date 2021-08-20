@@ -7,7 +7,7 @@ namespace SG
     public class EnemyManager : CharacterManager
     {
         EnemyLocomotionManager enemyLocomotionManager;
-        bool isPreformingAction;
+        public bool isPreformingAction;
 
         [Header("A.I Settings")]
         public float detectionRadius = 20;
@@ -22,6 +22,11 @@ namespace SG
 
         private void Update()
         {
+
+        }
+
+        private void FixedUpdate()
+        {
             HandleCurrentAction();
         }
 
@@ -30,6 +35,10 @@ namespace SG
             if (enemyLocomotionManager.currentTarget == null)
             {
                 enemyLocomotionManager.HandleDetection();
+            }
+            else
+            {
+                enemyLocomotionManager.HandleMoveToTarget();
             }
         }
     }
