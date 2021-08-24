@@ -33,7 +33,7 @@ namespace SG
         {
             #region Vertical
             float v = 0;
-            Debug.Log(v);
+            
 
             if(verticalMovement > 0 && verticalMovement < 0.55f)
             {
@@ -58,7 +58,7 @@ namespace SG
             #endregion
             #region Horizontl
             float h = 0; 
-            Debug.Log(h);
+            
 
             if (horizontalMovement > 0 && horizontalMovement < 0.55f)
             {

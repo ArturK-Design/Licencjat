@@ -1,44 +1,94 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace SG
 {
     public class EnemyManager : CharacterManager
     {
         EnemyLocomotionManager enemyLocomotionManager;
+        EnemyAnimatorManager enemyAnimationManager;
+        EnemyStats enemyStats;
+
+        public State currentState;
+        public CharacterStats currentTarget;
+        public NavMeshAgent navmeshAgent;
+        public Rigidbody enemyRigidBody;
+
         public bool isPreformingAction;
+        public bool isInteracting;
+        public float distanceFromTarget;
+        public float rotationSpeed = 15;
+        public float maximumAttackRange = 1.5f;
 
         [Header("A.I Settings")]
         public float detectionRadius = 20;
         //The higher, and lower, respectively these angles are, the greater detection FIELD OF VIEW (basically like eye sight)
         public float maximumDetectionAngle = 50;
         public float minimumDetectionAngle = -50;
+        public float viewableAngle;
+
+        public float currentRecoveryTime = 0;
 
         private void Awake()
         {
             enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
+            enemyAnimationManager = GetComponentInChildren<EnemyAnimatorManager>();
+            enemyStats = GetComponent<EnemyStats>();
+            enemyRigidBody = GetComponent<Rigidbody>();
+            navmeshAgent = GetComponentInChildren<NavMeshAgent>();
+            navmeshAgent.enabled = false;
+        }
+
+        private void Start()
+        {
+            enemyRigidBody.isKinematic = false;
         }
 
         private void Update()
         {
+            HandleRecoveryTimer();
 
+            isInteracting = enemyAnimationManager.anim.GetBool("isInteracting");
         }
 
         private void FixedUpdate()
         {
-            HandleCurrentAction();
+            HandleStateMachine();
         }
 
-        private void HandleCurrentAction()
+        private void HandleStateMachine()
         {
-            if (enemyLocomotionManager.currentTarget == null)
+            if (currentState != null)
             {
-                enemyLocomotionManager.HandleDetection();
+                State nextState = currentState.Tick(this, enemyStats, enemyAnimationManager);
+
+                if (nextState != null)
+                {
+                    SwitchToNextState(nextState);
+                }
             }
-            else
+        }
+
+        private void SwitchToNextState(State state)
+        {
+            currentState = state;
+        }
+
+        private void HandleRecoveryTimer()
+        {
+            if (currentRecoveryTime > 0)
             {
-                enemyLocomotionManager.HandleMoveToTarget();
+                currentRecoveryTime -= Time.deltaTime;
+            }
+
+            if (isPreformingAction)
+            {
+                if (currentRecoveryTime <= 0)
+                {
+                    isPreformingAction = false;
+                }
             }
         }
     }
