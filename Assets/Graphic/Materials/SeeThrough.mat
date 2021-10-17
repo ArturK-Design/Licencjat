@@ -117,5 +117,5 @@ Material:
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Position: {r: 0.49999896, g: 0.3361987, b: 3.6757548, a: 0}
+    - _Position: {r: 0.5000019, g: 0.06440258, b: 4.060109, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
