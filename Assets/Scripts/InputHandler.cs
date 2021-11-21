@@ -14,7 +14,6 @@ namespace SG
 
         public bool b_Input;
         public bool a_Input;
-        public bool y_Input;
         public bool rb_Input;
         public bool rt_Input;
         public bool jump_Input;
@@ -29,7 +28,6 @@ namespace SG
         public bool d_Pad_Right;
 
         public bool rollFlag;
-        public bool twoHandFlag;
         public bool sprintFlag;
         public bool comboFlag;
         public bool lockOnFlag;
@@ -40,9 +38,7 @@ namespace SG
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
         PlayerManager playerManager;
-        WeaponSlotManager weaponSlotManager;
-        CameraHolder cameraHandler;
-        AnimatorHandler animatorHandler;
+        CameraHolder cameraHolder;
         //UIManager uiManager;
 
         Vector2 movementInput;
@@ -53,10 +49,8 @@ namespace SG
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
-            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             //uiManager = FindObjectOfType<UIManager>();
-            cameraHandler = FindObjectOfType<CameraHolder>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            cameraHolder = FindObjectOfType<CameraHolder>();
         }
 
         public void OnEnable()
@@ -70,13 +64,12 @@ namespace SG
                 inputActions.PlayerActions.RT.performed += i => rt_Input = true;
                 inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
                 inputActions.PlayerQuickSlots.DPadLeft.performed += i => d_Pad_Left = true;
-                //inputActions.PlayerActions.A.performed += i => a_Input = true;
+                inputActions.PlayerActions.F_Input.performed += i => a_Input = true;
                 //inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
                 //inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
                 inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => right_Stick_Right_Input = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
-                //inputActions.PlayerActions.Y.performed += i => y_Input = true;
             }
 
             inputActions.Enable();
@@ -89,16 +82,15 @@ namespace SG
 
         public void TickInput(float delta)
         {
-            HandleMoveInput(delta);
+            MoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotsInput();
             //HandleInventoryInput();
             HandleLockOnInput();
-            HandleTwoHandInput();
         }
 
-        private void HandleMoveInput(float delta)
+        private void MoveInput(float delta)
         {
             horizontal = movementInput.x;
             vertical = movementInput.y;
@@ -147,7 +139,6 @@ namespace SG
                     if (playerManager.canDoCombo)
                         return;
 
-                    animatorHandler.anim.SetBool("isUsingRightHand", true);
                     playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
                 }
             }
@@ -169,7 +160,7 @@ namespace SG
                 playerInventory.ChangeLeftWeapon();
             }
         }
-/*
+        /*
         private void HandleInventoryInput()
         {
             if (inventory_Input)
@@ -190,16 +181,16 @@ namespace SG
                 }
             }
         }
-*/
+        */
         private void HandleLockOnInput()
         {
             if (lockOnInput && lockOnFlag == false)
             {
                 lockOnInput = false;
-                cameraHandler.HandleLockOn();
-                if (cameraHandler.nearestLockOnTarget != null)
+                cameraHolder.HandleLockOn();
+                if (cameraHolder.nearestLockOnTarget != null)
                 {
-                    cameraHandler.currentLockOnTarget = cameraHandler.nearestLockOnTarget;
+                    cameraHolder.currentLockOnTarget = cameraHolder.nearestLockOnTarget;
                     lockOnFlag = true;
                 }
             }
@@ -207,48 +198,26 @@ namespace SG
             {
                 lockOnInput = false;
                 lockOnFlag = false;
-                cameraHandler.ClearLockOnTargets();
+                cameraHolder.ClearLockOnTargets();
             }
 
             if (lockOnFlag && right_Stick_Left_Input)
             {
                 right_Stick_Left_Input = false;
-                cameraHandler.HandleLockOn();
-                if (cameraHandler.leftLockTarget != null)
+                cameraHolder.HandleLockOn();
+                if (cameraHolder.leftLockTarget != null)
                 {
-                    cameraHandler.currentLockOnTarget = cameraHandler.leftLockTarget;
+                    cameraHolder.currentLockOnTarget = cameraHolder.leftLockTarget;
                 }
             }
 
             if (lockOnFlag && right_Stick_Right_Input)
             {
                 right_Stick_Right_Input = false;
-                cameraHandler.HandleLockOn();
-                if (cameraHandler.rightLockTarget != null)
+                cameraHolder.HandleLockOn();
+                if (cameraHolder.rightLockTarget != null)
                 {
-                    cameraHandler.currentLockOnTarget = cameraHandler.rightLockTarget;
-                }
-            }
-
-            //cameraHandler.SetCameraHeight();
-        }
-
-        private void HandleTwoHandInput()
-        {
-            if (y_Input)
-            {
-                y_Input = false;
-
-                twoHandFlag = !twoHandFlag;
-
-                if (twoHandFlag)
-                {
-                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
-                }
-                else
-                {
-                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
-                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
+                    cameraHolder.currentLockOnTarget = cameraHolder.rightLockTarget;
                 }
             }
         }
