@@ -18,7 +18,6 @@ namespace SG
 
         public bool isPreformingAction;
         public bool isInteracting;
-        public float distanceFromTarget;
         public float rotationSpeed = 15;
         public float maximumAttackRange = 1.5f;
 
@@ -27,7 +26,6 @@ namespace SG
         //The higher, and lower, respectively these angles are, the greater detection FIELD OF VIEW (basically like eye sight)
         public float maximumDetectionAngle = 50;
         public float minimumDetectionAngle = -50;
-        public float viewableAngle;
 
         public float currentRecoveryTime = 0;
 
