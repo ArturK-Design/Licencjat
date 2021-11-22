@@ -231,7 +231,7 @@ MonoBehaviour:
   wakeAnimation: 
   detectionLayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 32768
   pursueTargetState: {fileID: 1995253024}
 --- !u!4 &328410109 stripped
 Transform:
@@ -6068,7 +6068,7 @@ MonoBehaviour:
   pursueTargetState: {fileID: 1995253024}
   detectionLayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 32768
 --- !u!4 &1959587719 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1978170889769594901, guid: 5d8545b80b0772443ad921a4c9d56159,
@@ -6411,7 +6411,12 @@ PrefabInstance:
     - target: {fileID: 1978170889769594902, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978170889769594902, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4712283662943084928, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}

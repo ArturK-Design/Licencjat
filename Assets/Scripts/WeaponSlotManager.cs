@@ -50,7 +50,7 @@ namespace SG
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
-                quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
+                //quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
 
                 #region Handle Left Weapon Idle Animations
                 if (weaponItem != null)
@@ -67,7 +67,7 @@ namespace SG
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
-                quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
+                //quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
 
                 #region Handle Right Weapon Idle Animations
                 if (weaponItem != null)
@@ -110,7 +110,7 @@ namespace SG
         public void CloseDamageCollider()
         {
             rightHandDamageCollider.DisableDamageCollider();
-            leftHandDamageCollider.DisableDamageCollider();
+            leftHandDamageCollider?.DisableDamageCollider();
         }
 
 
