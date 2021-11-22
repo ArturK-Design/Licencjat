@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mace_01
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
-  itemName: 
+  itemName: Mace
   modelPrefab: {fileID: 1520957070008596198, guid: a79a35d981bf3ad4fa34f8c541080480,
     type: 3}
   isUnarmed: 0
