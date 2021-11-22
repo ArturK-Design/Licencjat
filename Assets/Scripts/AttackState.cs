@@ -13,7 +13,9 @@ namespace SG
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager enemyAnimatorManager)
         {
             Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+            float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
             float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+            
 
             if (enemyManager.isPreformingAction)
                 return combatStanceState;
@@ -21,16 +23,16 @@ namespace SG
             if (currentAttack != null)
             {
                 //If we are too close to the enemy to preform current attack, get a new attack
-                if(enemyManager.distanceFromTarget < currentAttack.minimumDistanceNeededToAttack)
+                if(distanceFromTarget < currentAttack.minimumDistanceNeededToAttack)
                 {
                     return this;
                 }
                 //If we are close enough to attack, then let us proceed
-                else if (enemyManager.distanceFromTarget < currentAttack.maximumDistanceNeededToAttack)
+                else if (distanceFromTarget < currentAttack.maximumDistanceNeededToAttack)
                 {
                     //If our enemy is within our attacks viewable angle, we attack
-                    if (enemyManager.viewableAngle <= currentAttack.maximumAttackAngle &&
-                        enemyManager.viewableAngle >= currentAttack.minimumAttackAngle)
+                    if (viewableAngle <= currentAttack.maximumAttackAngle &&
+                        viewableAngle >= currentAttack.minimumAttackAngle)
                     {
                         if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isPreformingAction == false)
                         {
@@ -58,7 +60,7 @@ namespace SG
         {
             Vector3 targetsDirection = enemyManager.currentTarget.transform.position - transform.position;
             float viewableAngle = Vector3.Angle(targetsDirection, transform.forward);
-            enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
+            float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
 
             int maxScore = 0;
 
@@ -66,8 +68,8 @@ namespace SG
             {
                 EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-                if (enemyManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
-                    && enemyManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
+                if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
+                    && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
                 {
                     if (viewableAngle <= enemyAttackAction.maximumAttackAngle
                     && viewableAngle >= enemyAttackAction.minimumAttackAngle)
@@ -85,8 +87,8 @@ namespace SG
             {
                 EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-                if (enemyManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
-                && enemyManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
+                if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
+                && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
                 {
                     if (viewableAngle <= enemyAttackAction.maximumAttackAngle
                     && viewableAngle >= enemyAttackAction.minimumAttackAngle)

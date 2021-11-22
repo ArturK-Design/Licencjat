@@ -12,6 +12,7 @@ namespace SG
         public bool isRightHandSlot;
 
         public GameObject currentWeaponModel;
+        public WeaponItem currentWeapon;
 
         public void UnloadWeapon()
         {

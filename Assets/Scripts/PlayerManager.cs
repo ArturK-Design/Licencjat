@@ -22,6 +22,8 @@ namespace SG
         public bool isInAir;
         public bool isGrounded;
         public bool canDoCombo;
+        public bool isUsingRightHand;
+        public bool isUsingLeftHand;
 
         private void Awake()
         {
@@ -43,7 +45,8 @@ namespace SG
             isInteracting = anim.GetBool("isInteracting");
             canDoCombo = anim.GetBool("canDoCombo");
             anim.SetBool("isInAir", isInAir);
-
+            isUsingRightHand = anim.GetBool("isUsingRightHand");
+            isUsingLeftHand = anim.GetBool("isUsingLeftHand");
             inputHandler.TickInput(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             //playerLocomotion.HandleJumping();
