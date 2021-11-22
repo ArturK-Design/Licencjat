@@ -55321,7 +55321,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_Events:
   - time: 0.37777779
-    functionName: OpenRigtDamageCollider
+    functionName: OpenDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -55335,7 +55335,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.5777778
-    functionName: CloseRightHandDamageCollider
+    functionName: CloseDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
