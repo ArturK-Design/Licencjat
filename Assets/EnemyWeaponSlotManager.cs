@@ -85,6 +85,26 @@ namespace SG
         {
             rightHandDamageCollider.DisableDamageCollider();
         }
+
+        public void DrainStaminaLightAttack()
+        {
+            
+        }
+
+        public void DrainStaminaHeavyAttack()
+        {
+            
+        }
+
+        public void EnableCombo()
+        {
+            //anim.SetBool("canDoCombo", true);
+        }
+
+        public void DisableCombo()
+        {
+            //anim.SetBool("canDoCombo", false);
+        }
     }
 
     
