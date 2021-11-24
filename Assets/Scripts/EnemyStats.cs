@@ -10,6 +10,8 @@ namespace SG
         Animator animator;
         public Text enemyCount;
 
+        public int goldAwardedOnDeatch;
+
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
@@ -39,13 +41,29 @@ namespace SG
 
             if (currentHealth <= 0)
             {
-                currentHealth = 0;
-                animator.Play("Dead_01");
-                isDead = true;
-                StartCoroutine(deadTime());
-                
+                HandleDeath();
                 //HANDLE PLAYER DEATH
             }
+        }
+
+        public void HandleDeath()
+        {
+            currentHealth = 0;
+            animator.Play("Dead_01");
+            isDead = true;
+            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+            GoldCountBar goldCountBar = FindObjectOfType<GoldCountBar>();
+
+            if(playerStats != null)
+            {
+                playerStats.AddGold(goldAwardedOnDeatch);
+
+                if(goldCountBar != null)
+                {
+                    goldCountBar.SetGoldCountText(playerStats.goldCount);
+                }
+            }
+            StartCoroutine(deadTime());
         }
 
         IEnumerator deadTime()
