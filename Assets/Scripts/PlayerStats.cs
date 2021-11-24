@@ -9,6 +9,7 @@ namespace SG
         HealthBar healthBar;
         StaminaBar staminaBar;
         AnimatorHandler animatorHandler;
+        
 
         private void Awake()
         {
@@ -44,6 +45,8 @@ namespace SG
 
         public void TakeDamage(int damage)
         {
+            if (isDead)
+                return;
             currentHealth = currentHealth - damage;
             healthBar.SetCurrentHealth(currentHealth);
 
@@ -53,6 +56,7 @@ namespace SG
             {
                 currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Dead_01", true);
+                isDead = true;
                 //HANDLE PLAYER DEATH
             }
         }
@@ -61,6 +65,11 @@ namespace SG
         {
             currentStamina = currentStamina - damage;
             staminaBar.SetCurrentStamina(currentStamina);
+        }
+
+        public void AddGold(int gold)
+        {
+            goldCount = goldCount + gold;
         }
     }
 }

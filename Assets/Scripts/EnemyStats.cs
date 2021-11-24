@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SG
 {
     public class EnemyStats : CharacterStats
     {
         Animator animator;
+        public Text enemyCount;
+
+        public int goldAwardedOnDeatch;
 
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
+            enemyCount = GameObject.Find("PlayerUI/EnemyCount").GetComponent<Text>();
         }
 
         void Start()
         {
             maxHealth = SetMaxHealthFromHealthLevel();
             currentHealth = maxHealth;
+            
         }
 
         private int SetMaxHealthFromHealthLevel()
@@ -27,16 +33,45 @@ namespace SG
 
         public void TakeDamage(int damage)
         {
+            if (isDead)
+                return;
             currentHealth = currentHealth - damage;
 
             animator.Play("Damage_01");
 
             if (currentHealth <= 0)
             {
-                currentHealth = 0;
-                animator.Play("Dead_01");
+                HandleDeath();
                 //HANDLE PLAYER DEATH
             }
         }
+
+        public void HandleDeath()
+        {
+            currentHealth = 0;
+            animator.Play("Dead_01");
+            isDead = true;
+            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+            GoldCountBar goldCountBar = FindObjectOfType<GoldCountBar>();
+
+            if(playerStats != null)
+            {
+                playerStats.AddGold(goldAwardedOnDeatch);
+
+                if(goldCountBar != null)
+                {
+                    goldCountBar.SetGoldCountText(playerStats.goldCount);
+                }
+            }
+            StartCoroutine(deadTime());
+        }
+
+        IEnumerator deadTime()
+        {
+            
+            yield return new WaitForSeconds(3);
+            this.gameObject.SetActive(false);
+        }
     }
 }
+

@@ -13,5 +13,9 @@ namespace SG
         public int staminaLevel = 10;
         public int maxStamina;
         public int currentStamina;
+
+        public int goldCount;
+
+        public bool isDead;
     }
 }
