@@ -477,6 +477,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!115 &40397457
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 5
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: InputSystemUIInputModule
+  m_Namespace: UnityEngine.InputSystem.UI
 --- !u!1001 &48053048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5759,7 +5773,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 685508833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 810607100}
+  m_Script: {fileID: 40397457}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
@@ -5768,8 +5782,7 @@ MonoBehaviour:
     type: 3}
   m_PointAction: {fileID: -2000649929706455521, guid: 0154a612158831d4dba267b48b098cbd,
     type: 3}
-  m_MoveAction: {fileID: 3644491227822644527, guid: 3e225de3531814a48a7197efc9d73840,
-    type: 3}
+  m_MoveAction: {fileID: 0}
   m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 5572695015061683576, guid: 0154a612158831d4dba267b48b098cbd,
@@ -6869,20 +6882,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796589529}
   m_CullTransparentMesh: 0
---- !u!115 &810607100
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 5
-  m_Script: 
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_ExecutionOrder: 0
-  m_ClassName: InputSystemUIInputModule
-  m_Namespace: UnityEngine.InputSystem.UI
 --- !u!4 &819104437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4967708961392006, guid: 7da8f896399831c46bd9bfafc844a571,

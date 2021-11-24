@@ -10,7 +10,7 @@ TagManager:
   - Water
   - Enemy
   - Interactable
-  - Count
+  - Merchant
   layers:
   - Default
   - TransparentFX

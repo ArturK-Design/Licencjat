@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         anim = MenuCamera.GetComponent<Animator>();
+        Cursor.visible = true;
     }
 
     public void QuitGame()
@@ -25,6 +26,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Level1");
+        Cursor.visible = false;
     }
     public void Options()
     {

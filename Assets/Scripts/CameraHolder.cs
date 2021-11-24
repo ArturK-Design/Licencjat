@@ -38,6 +38,7 @@ namespace SG
         public Transform leftLockTarget;
         public Transform rightLockTarget;
         public float maximumLockOnDistance = 30;
+       
 
 
         private void Awake()
@@ -53,8 +54,10 @@ namespace SG
         {
             Vector3 targetPosition = Vector3.SmoothDamp(myTransform.position, targetTransform.position, ref cameraFollowVelocity, delta / followSpeed);
             myTransform.position = targetPosition;
-
+           
             HandleCameraCollisions(delta);
+            
+            
         }
 
         public void HandleCameraRotation(float delta, float mouseXInput, float mouseYInput)
