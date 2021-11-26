@@ -9,13 +9,13 @@ namespace SG
         HealthBar healthBar;
         StaminaBar staminaBar;
         AnimatorHandler animatorHandler;
-        
+              
 
         private void Awake()
         {
             healthBar = FindObjectOfType<HealthBar>();
             staminaBar = FindObjectOfType<StaminaBar>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            animatorHandler = GetComponentInChildren<AnimatorHandler>();            
         }
 
         void Start()
@@ -30,7 +30,7 @@ namespace SG
             staminaBar.SetMaxStamina(maxStamina);
             staminaBar.SetCurrentStamina(currentStamina);
         }
-
+                
         private int SetMaxHealthFromHealthLevel()
         {
             maxHealth = healthLevel * 10;
@@ -70,6 +70,37 @@ namespace SG
         public void AddGold(int gold)
         {
             goldCount = goldCount + gold;
+        }
+
+        public void Heal()
+        {
+            if (goldCount >= 50)
+            {
+                currentHealth = maxHealth;
+                goldCount = goldCount - 50;
+                Debug.Log(maxHealth);
+                Debug.Log(goldCount);
+                Debug.Log("Wykonano akcję leczenia");
+            }
+            else
+            {
+                Debug.Log("Za mało hajsu");
+            }
+        }
+
+        public void maxHealthUp()
+        {
+            if (goldCount >= 50)
+            {
+                healthLevel = healthLevel + 5;
+                SetMaxHealthFromHealthLevel();
+                goldCount = goldCount - 50;
+                Debug.Log("Dodano maxymalne żyćko" + "a hajsu został" + goldCount);
+            }
+            else
+            {
+                Debug.Log("Za mało hajsu");
+            }
         }
     }
 }
