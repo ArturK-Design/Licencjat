@@ -11,6 +11,9 @@ TagManager:
   - Enemy
   - Interactable
   - Merchant
+  - Count
+  - Stage2Blocker
+  - Stage3Blocker
   layers:
   - Default
   - TransparentFX
