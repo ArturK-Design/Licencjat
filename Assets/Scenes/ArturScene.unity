@@ -1844,12 +1844,23 @@ PrefabInstance:
       objectReference: {fileID: 963194225}
     - target: {fileID: 1978170889769594904, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: 78493723271376e4ebdd890274d26e00, type: 2}
+    - target: {fileID: 1978170889769594904, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
       propertyPath: Camera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 82350673, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
-      propertyPath: m_Height
-      value: 2
+    - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: rightWeapon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: leftWeapon
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
