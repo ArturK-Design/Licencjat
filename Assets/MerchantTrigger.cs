@@ -149,7 +149,7 @@ namespace SG
             {
                 string text = enemyManagerStage1.GetComponent<EnemyCount>().enemyCount.text;
                 enemies = text.ToString();
-                Debug.Log(enemies + " tylu wrogów zostało w 1 levelu");
+                //Debug.Log(enemies + " tylu wrogów zostało w 1 levelu");
             }
             else 
             {
@@ -157,7 +157,7 @@ namespace SG
                 {
                     string text = enemyManagerStage2.GetComponent<EnemyCount>().enemyCount.text;
                     enemies = text.ToString();
-                    Debug.Log(enemies + " tylu wrogów zostało w 2 levelu");
+                    //Debug.Log(enemies + " tylu wrogów zostało w 2 levelu");
                 }
             }
             if(keyBought == true && enemies != "0")
@@ -183,6 +183,11 @@ namespace SG
                     stage3Unlocked = true;
                 }
             }
+        }
+
+        public void Stage2Enter()
+        {
+            keyBought = false;           
         }
         
 
