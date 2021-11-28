@@ -26,9 +26,7 @@ namespace SG
                 Merchant.transform.position = new Vector3(-15.821f, 9.897f, 78.08f);
                 EnemyManagerStage1.SetActive(false);
                 EnemyManagerStage2.SetActive(true);
-                MerchantActivator.GetComponent<MerchantTrigger>().Stage2Enter();
-
-
+                //MerchantActivator.GetComponent<MerchantTrigger>().Stage2Enter();
             }
             else
             {
@@ -39,6 +37,14 @@ namespace SG
                     EnemyManagerStage3.SetActive(true);
                 }
             }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Player" && Stage2 == true)
+            {
+               MerchantActivator.GetComponent<MerchantTrigger>().Stage2Enter();
+            }
+                
         }
 
 
