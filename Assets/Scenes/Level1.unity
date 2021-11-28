@@ -26656,11 +26656,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770823872}
   m_LocalRotation: {x: -0, y: -0.22569448, z: -0, w: 0.97419816}
-  m_LocalPosition: {x: 30.92, y: 9.7, z: 71.67}
+  m_LocalPosition: {x: -32.024055, y: 1.1049929, z: 47.0748}
   m_LocalScale: {x: 7.916673, y: 4.348877, z: 2.049}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 775183342}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -26.087002, z: 0}
 --- !u!114 &770823877
 MonoBehaviour:
@@ -26679,6 +26679,7 @@ MonoBehaviour:
   Stage2Blocker: {fileID: 1836216743}
   Stage3Blocker: {fileID: 1732915132}
   Merchant: {fileID: 649817423}
+  MerchantActivator: {fileID: 1473367829}
   EnemyManagerStage1: {fileID: 1610053771}
   EnemyManagerStage2: {fileID: 885310144}
   EnemyManagerStage3: {fileID: 0}
@@ -26896,6 +26897,8 @@ Transform:
   - {fileID: 1720059005}
   - {fileID: 1836216744}
   - {fileID: 1415431473}
+  - {fileID: 770823876}
+  - {fileID: 1732915136}
   - {fileID: 1133254323}
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -39538,7 +39541,7 @@ Transform:
   - {fileID: 1547222425}
   - {fileID: 1657513164}
   m_Father: {fileID: 775183342}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1136785703
 PrefabInstance:
@@ -45237,7 +45240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1342810596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -57558,11 +57561,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732915132}
   m_LocalRotation: {x: -0, y: -0.22569448, z: -0, w: 0.97419816}
-  m_LocalPosition: {x: 80.85, y: 9.74, z: 153.03}
+  m_LocalPosition: {x: 17.905945, y: 1.1449928, z: 128.4348}
   m_LocalScale: {x: 7.916673, y: 4.348877, z: 2.049}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Father: {fileID: 775183342}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -26.087002, z: 0}
 --- !u!114 &1732915137
 MonoBehaviour:
@@ -57579,8 +57582,9 @@ MonoBehaviour:
   Stage2: 0
   Stage3: 0
   Stage2Blocker: {fileID: 0}
-  Stage3Blocker: {fileID: 0}
+  Stage3Blocker: {fileID: 1438046525}
   Merchant: {fileID: 0}
+  MerchantActivator: {fileID: 1473367829}
   EnemyManagerStage1: {fileID: 0}
   EnemyManagerStage2: {fileID: 0}
   EnemyManagerStage3: {fileID: 0}
@@ -72110,19 +72114,19 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponsInRightHandSlots.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 8d48b323261183645bcfcfc5d21fb5f6,
+      objectReference: {fileID: 11400000, guid: 3decd3201a02ff44992594e63250fcb3,
         type: 2}
     - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
       propertyPath: weaponsInRightHandSlots.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 73e8297cbe2c99b44b97558b5e449a02,
+      objectReference: {fileID: 11400000, guid: 9ed6a9d2bcda6334e9d7214b23e268af,
         type: 2}
     - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
       propertyPath: weaponsInRightHandSlots.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 73e8297cbe2c99b44b97558b5e449a02,
+      objectReference: {fileID: 11400000, guid: ce45083153fcbc74c98f0c167e65d0f8,
         type: 2}
     - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
@@ -72139,6 +72143,16 @@ PrefabInstance:
         type: 3}
       propertyPath: currentLeftWeaponIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: rightWeapon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: leftWeapon
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1978170889769594911, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
@@ -72184,6 +72198,14 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747076471, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664043694, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
