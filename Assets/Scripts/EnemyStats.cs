@@ -36,6 +36,7 @@ namespace SG
             if (isDead)
                 return;
             currentHealth = currentHealth - damage;
+            //Debug.Log(damage);
 
             animator.Play("Damage_01");
 

@@ -36,6 +36,7 @@ namespace SG
                 {
                     Stage3Blocker.SetActive(true);
                     EnemyManagerStage2.SetActive(false);
+                    EnemyManagerStage3.SetActive(true);
                 }
             }
         }

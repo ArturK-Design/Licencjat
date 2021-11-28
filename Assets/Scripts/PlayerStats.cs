@@ -102,5 +102,10 @@ namespace SG
                 Debug.Log("Za mało hajsu");
             }
         }
+
+        public void DmgUpBuy()
+        {
+            goldCount = goldCount - 50;
+        }
     }
 }

@@ -185,6 +185,18 @@ namespace SG
             }
         }
 
+        public void GetPlayerWeapon()
+        {
+           
+        }
+
+        public void DmgUp()
+        {
+            DamageCollider damageCollider = player.GetComponentInChildren<DamageCollider>();
+            damageCollider.DmgUp();
+            
+        }
+
         public void Stage2Enter()
         {
             keyBought = false;           
