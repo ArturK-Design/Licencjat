@@ -9,6 +9,7 @@ namespace SG
         HealthBar healthBar;
         StaminaBar staminaBar;
         AnimatorHandler animatorHandler;
+        public GameObject DeathScreen;
               
 
         private void Awake()
@@ -57,6 +58,9 @@ namespace SG
                 currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Dead_01", true);
                 isDead = true;
+                DeathScreen.SetActive(true);
+                DeathScreen.GetComponent<Animator>().enabled = true;
+                DeathScreen.GetComponent<Animator>().Play("FinalScreenFadeIn");
                 //HANDLE PLAYER DEATH
             }
         }
@@ -78,13 +82,15 @@ namespace SG
             {
                 currentHealth = maxHealth;
                 goldCount = goldCount - 50;
-                Debug.Log(maxHealth);
-                Debug.Log(goldCount);
-                Debug.Log("Wykonano akcję leczenia");
+                healthBar.SetMaxHealth(maxHealth);
+                healthBar.SetCurrentHealth(currentHealth);
+                //Debug.Log(maxHealth);
+                //Debug.Log(goldCount);
+                //Debug.Log("Wykonano akcję leczenia");
             }
             else
             {
-                Debug.Log("Za mało hajsu");
+                //Debug.Log("Za mało hajsu");
             }
         }
 
@@ -92,14 +98,14 @@ namespace SG
         {
             if (goldCount >= 50)
             {
-                healthLevel = healthLevel + 5;
+                healthLevel = healthLevel + 1;
                 SetMaxHealthFromHealthLevel();
                 goldCount = goldCount - 50;
-                Debug.Log("Dodano maxymalne żyćko" + "a hajsu został" + goldCount);
+                //Debug.Log("Dodano maxymalne żyćko" + "a hajsu został" + goldCount);
             }
             else
             {
-                Debug.Log("Za mało hajsu");
+                //Debug.Log("Za mało hajsu");
             }
         }
 
