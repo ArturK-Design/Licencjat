@@ -9,6 +9,7 @@ namespace SG
         Collider damageCollider;
 
         public int currentWeaponDamage = 25;
+        public int dmgup;
 
         private void Awake()
         {
@@ -53,6 +54,11 @@ namespace SG
                     enemyStats.TakeDamage(currentWeaponDamage);
                 }
             }
+        }
+        public void DmgUp()
+        {
+            currentWeaponDamage = currentWeaponDamage + dmgup;
+            //Debug.Log(currentWeaponDamage);
         }
     }
 }
