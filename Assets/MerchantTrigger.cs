@@ -19,9 +19,6 @@ namespace SG
         public GameObject healBuy;
         public GameObject maxHealthBuy;
         public GameObject keyBuy;
-        public GameObject QuestTitle;
-        public GameObject ProgressToGate;
-        public GameObject ReturnToMerchant;
         private Button dmgButton;
         private Button healButton;
         private Button maxHealthButton;
@@ -32,6 +29,7 @@ namespace SG
         private int moneyCount;        
         public int price;
         public string enemies;
+        //public string enemies2;
         private string enemiesLeft;
         public GameObject enemyManagerStage1;
         public GameObject enemyManagerStage2;
@@ -56,14 +54,13 @@ namespace SG
         }
         private void Update()
         {
-            
+
             if (Keyboard.current.fKey.wasReleasedThisFrame)
             {
                 UpdateMoney();
                 MerchantOpen();
             }
             countEnemies();
-            
         }
 
         private void OnTriggerEnter(Collider other)
@@ -123,8 +120,6 @@ namespace SG
             if (enemies == "0" && keyBought != true)
             {
                 keyButton.interactable = true;
-                //QuestTitle.SetActive(false);
-                //ReturnToMerchant.SetActive(true);
             }
             else
             {
@@ -155,11 +150,6 @@ namespace SG
                 string text = enemyManagerStage1.GetComponent<EnemyCount>().enemyCount.text;
                 enemies = text.ToString();
                 //Debug.Log(enemies + " tylu wrogów zostało w 1 levelu");
-                if (enemies == "0" && keyBought == false)
-                {
-                    QuestTitle.SetActive(false);
-                    ReturnToMerchant.SetActive(true);
-                }
             }
             else 
             {
@@ -169,16 +159,10 @@ namespace SG
                     enemies = text.ToString();
                     //Debug.Log(enemies + " tylu wrogów zostało w 2 levelu");
                 }
-                if (enemies == "0" && keyBought == false)
-                {
-                    QuestTitle.SetActive(false);
-                    ReturnToMerchant.SetActive(true);
-                }
-            }            
-
-            if (keyBought == true && enemies != "0")
+            }
+            if(keyBought == true && enemies != "0")
             {
-                keyButton.interactable = false;                
+                keyButton.interactable = false;
             }
 
         }
@@ -190,20 +174,21 @@ namespace SG
             {
                 stage2Blocker.SetActive(false);
                 stage2Unlocked = true;
-                ReturnToMerchant.SetActive(false);
-                ProgressToGate.SetActive(true);
             }
             else
             {
                 if (stage2Unlocked == true && stage3Unlocked == false)
                 {
                     stage3Blocker.SetActive(false);
-                    stage3Unlocked = true;                    
-                    ProgressToGate.SetActive(true);
-                    ReturnToMerchant.SetActive(false);
+                    stage3Unlocked = true;
                 }
             }
-        }        
+        }
+
+        public void GetPlayerWeapon()
+        {
+           
+        }
 
         public void DmgUp()
         {
@@ -214,10 +199,7 @@ namespace SG
 
         public void Stage2Enter()
         {
-            keyBought = false;
-            ProgressToGate.SetActive(false);
-            QuestTitle.SetActive(true);
-            
+            keyBought = false;           
         }
         
 
