@@ -73121,6 +73121,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 944540782084691234, guid: 812eedc1ff9c6514c86b8e783ced36b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1782934625214468996, guid: 812eedc1ff9c6514c86b8e783ced36b0,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -73237,6 +73242,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1782934624946335661, guid: 812eedc1ff9c6514c86b8e783ced36b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1782934623592507455, guid: 812eedc1ff9c6514c86b8e783ced36b0,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -73267,16 +73277,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 1782934624946335661, guid: 812eedc1ff9c6514c86b8e783ced36b0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 944540782084691234, guid: 812eedc1ff9c6514c86b8e783ced36b0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812eedc1ff9c6514c86b8e783ced36b0, type: 3}
 --- !u!1001 &1978170891576598418
@@ -73305,21 +73305,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1978170889769594908, guid: 5d8545b80b0772443ad921a4c9d56159,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1569740621}
-    - target: {fileID: 4712283662943084928, guid: 5d8545b80b0772443ad921a4c9d56159,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1150843222094140614, guid: 5d8545b80b0772443ad921a4c9d56159,
-        type: 3}
-      propertyPath: looping
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1978170889769594901, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
@@ -73386,16 +73371,6 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 1978170889769594903, guid: 5d8545b80b0772443ad921a4c9d56159,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1978170889769594905, guid: 5d8545b80b0772443ad921a4c9d56159,
-        type: 3}
-      propertyPath: lockOnTransform
-      value: 
-      objectReference: {fileID: 1747076471}
     - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
       propertyPath: weaponsInRightHandSlots.Array.size
@@ -73444,12 +73419,31 @@ PrefabInstance:
         type: 3}
       propertyPath: rightWeapon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: ce45083153fcbc74c98f0c167e65d0f8,
+        type: 2}
     - target: {fileID: 1978170889769594910, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
       propertyPath: leftWeapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1747076471, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664043694, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978170889769594903, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978170889769594905, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: lockOnTransform
+      value: 
+      objectReference: {fileID: 1747076471}
     - target: {fileID: 1978170889769594911, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
       propertyPath: FX
@@ -73465,6 +73459,21 @@ PrefabInstance:
       propertyPath: FX_2
       value: 
       objectReference: {fileID: 1849169538}
+    - target: {fileID: 1978170889769594908, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1569740621}
+    - target: {fileID: 4712283662943084928, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150843222094140614, guid: 5d8545b80b0772443ad921a4c9d56159,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 954596118853567804, guid: 5d8545b80b0772443ad921a4c9d56159,
         type: 3}
       propertyPath: m_IsActive
@@ -73494,14 +73503,6 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1747076471, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1664043694, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d8545b80b0772443ad921a4c9d56159, type: 3}
