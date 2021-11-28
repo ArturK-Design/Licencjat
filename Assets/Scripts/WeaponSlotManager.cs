@@ -91,7 +91,7 @@ namespace SG
 
         private void LoadLeftWeaponDamageCollider()
         {
-            rightHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            //rightHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }
 
         public void OpenDamageCollider()
