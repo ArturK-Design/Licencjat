@@ -156,11 +156,11 @@ namespace SG
         {
             if (d_Pad_Right)
             {
-                playerInventory.ChangeRightWeapon();
+                //playerInventory.ChangeRightWeapon();
             }
             else if (d_Pad_Left)
             {
-                playerInventory.ChangeLeftWeapon();
+                //playerInventory.ChangeLeftWeapon();
             }
         }
         /*
