@@ -136,7 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedc8ec0b3605514baaa99d05399b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponDamage: 30
+  damageCollider: {fileID: 0}
+  currentWeaponDamage: 20
+  dmgup: 5
 --- !u!1 &4031153808832746777
 GameObject:
   m_ObjectHideFlags: 0

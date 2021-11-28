@@ -71,7 +71,7 @@ namespace SG
         {
             
             yield return new WaitForSeconds(3);
-            Debug.Log("dead");
+            //Debug.Log("dead");
             this.gameObject.SetActive(false);
         }
     }

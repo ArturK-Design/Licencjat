@@ -35,11 +35,17 @@ namespace SG
         private string enemiesLeft;
         public GameObject enemyManagerStage1;
         public GameObject enemyManagerStage2;
+        public GameObject enemyManagerStage3;
         public bool keyBought = false;
         public GameObject stage2Blocker;
         public GameObject stage3Blocker;
         private bool stage2Unlocked = false;
         private bool stage3Unlocked = false;
+        public GameObject bossTitle;
+        public GameObject progressToEnd;
+        public bool enteredBossArena = false;
+        public GameObject lastGate;
+        public GameObject StartScreenUI;
 
         public void Start()
         {            
@@ -52,6 +58,7 @@ namespace SG
             //enemies = text.ToString();
             //stage2Blocker = GameObject.FindGameObjectWithTag("Stage2Blocker");
             //stage3Blocker = GameObject.FindGameObjectWithTag("Stage3Blocker");
+            //StartScreen();
 
         }
         private void Update()
@@ -102,7 +109,8 @@ namespace SG
                 playerUI.SetActive(false);
                 Time.timeScale = 0.1f;
                 Cursor.visible = true;
-                DisableButtons();                
+                DisableButtons();
+                StartScreenUI.SetActive(false);
             }
         }
 
@@ -173,8 +181,26 @@ namespace SG
                 {
                     QuestTitle.SetActive(false);
                     ReturnToMerchant.SetActive(true);
+                }              
+            }
+
+            if (enemyManagerStage3.activeInHierarchy == true && enteredBossArena == true)
+            {
+                string text = enemyManagerStage3.GetComponent<EnemyCount>().enemyCount.text;
+                enemies = text.ToString();
+                Debug.Log(enemies + " tylu wrogów zostało w 3 levelu");
+                if (enemies == "0")
+                {
+                    QuestTitle.SetActive(false);
+                    bossTitle.SetActive(false);
+                    progressToEnd.SetActive(true);
+                    FinalGate();
+
                 }
-            }            
+            }
+            else
+                return;
+
 
             if (keyBought == true && enemies != "0")
             {
@@ -208,8 +234,8 @@ namespace SG
         public void DmgUp()
         {
             DamageCollider damageCollider = player.GetComponentInChildren<DamageCollider>();
-            damageCollider.DmgUp();
-            
+            damageCollider.currentWeaponDamage += damageCollider.dmgup;
+
         }
 
         public void Stage2Enter()
@@ -219,7 +245,33 @@ namespace SG
             QuestTitle.SetActive(true);
             
         }
+
+        public void Stage3Enter()
+        {
+            //keyBought = false;
+            bossTitle.SetActive(true);
+            ProgressToGate.SetActive(false);
+        }
         
+        public void BossEntered()
+        {
+            enteredBossArena = true;
+        }
+
+        public void FinalGate()
+        {
+            StageBlocker stageblocker = lastGate.GetComponent<StageBlocker>();
+            stageblocker.UnlockFinalGate();
+            Debug.Log("brama odblokowana");
+        }
+
+        private void StartScreen()
+        {
+            //StartScreen.SetActive(true);
+            StartScreenUI.GetComponent<Animator>().enabled = true;
+            StartScreenUI.GetComponent<Animator>().Play("StartFadeOut");
+            StartScreenUI.SetActive(false);
+        }
 
     }
 }

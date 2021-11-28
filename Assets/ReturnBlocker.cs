@@ -15,9 +15,20 @@ namespace SG
         public GameObject MerchantActivator;
         public GameObject EnemyManagerStage1;
         public GameObject EnemyManagerStage2;
-        public GameObject EnemyManagerStage3;       
+        public GameObject EnemyManagerStage3;
+        public GameObject GateLeft;
+        public GameObject GateRight;
 
-       
+        public void Start()
+        {
+            GateLeft.GetComponent<Animator>().enabled = true;
+            GateRight.GetComponent<Animator>().enabled = true;
+            GateLeft.GetComponent<Animator>().Play("FenceLeftOpen");
+            GateRight.GetComponent<Animator>().Play("FenceRightOpen");
+            //GateLeft.GetComponent<Animator>().enabled = false;
+            //GateRight.GetComponent<Animator>().enabled = false;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player" && Stage2 == true)
@@ -42,9 +53,22 @@ namespace SG
         {
             if (other.tag == "Player" && Stage2 == true)
             {
-               MerchantActivator.GetComponent<MerchantTrigger>().Stage2Enter();
+                MerchantActivator.GetComponent<MerchantTrigger>().Stage2Enter();
             }
-                
+            else
+            {
+                if (other.tag == "Player" && Stage3 == true)
+                {
+                    MerchantActivator.GetComponent<MerchantTrigger>().Stage3Enter();
+                    MerchantActivator.GetComponent<MerchantTrigger>().BossEntered();                  
+                    
+                }
+            }
+            GateLeft.GetComponent<Animator>().enabled = true;
+            GateRight.GetComponent<Animator>().enabled = true;
+            GateLeft.GetComponent<Animator>().Play("FenceRightClose");
+            GateRight.GetComponent<Animator>().Play("FenceLeftClose");
+
         }
 
 

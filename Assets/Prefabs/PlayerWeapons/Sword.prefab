@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 3555635024668658257}
-  currentWeaponDamage: 30
-  dmgup: 5
+  currentWeaponDamage: 25
+  dmgup: 2
 --- !u!1 &8191580931042589557
 GameObject:
   m_ObjectHideFlags: 0

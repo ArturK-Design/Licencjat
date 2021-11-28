@@ -57,7 +57,7 @@ namespace SG
         }
         public void DmgUp()
         {
-            currentWeaponDamage = currentWeaponDamage + 5;
+            currentWeaponDamage = currentWeaponDamage + dmgup;
             Debug.Log(currentWeaponDamage);
         }
     }
