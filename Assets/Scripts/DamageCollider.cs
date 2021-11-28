@@ -6,7 +6,7 @@ namespace SG
 {
     public class DamageCollider : MonoBehaviour
     {
-        Collider damageCollider;
+        public Collider damageCollider;
 
         public int currentWeaponDamage = 25;
         public int dmgup;

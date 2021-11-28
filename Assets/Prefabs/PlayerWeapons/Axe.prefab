@@ -154,7 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedc8ec0b3605514baaa99d05399b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   currentWeaponDamage: 25
+  dmgup: 0
 --- !u!65 &7167585503497028419
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -166,5 +168,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.088281676, y: 1.0204264, z: 0.5632824}
-  m_Center: {x: -0.000025678179, y: 0.8788257, z: 0.2083348}
+  m_Size: {x: 0.31063685, y: 1.8013097, z: 0.7713999}
+  m_Center: {x: 0.0054934933, y: 0.6433269, z: 0.13150695}

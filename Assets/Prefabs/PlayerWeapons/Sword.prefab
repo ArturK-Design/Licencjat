@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5287075756121740610}
   m_LocalRotation: {x: 0.31812525, y: -0.55492693, z: -0.6084615, w: 0.46970955}
-  m_LocalPosition: {x: 0.931, y: 1.487, z: -0.026}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.392, y: 9.6244, z: 2.2414}
+  m_LocalScale: {x: 1.1842, y: 1.1842, z: 1.1842}
   m_Children:
   - {fileID: 1391072586223254550}
   m_Father: {fileID: 0}
@@ -122,8 +122,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.063965015, y: 1.5490633, z: 0.22265634}
-  m_Center: {x: 0.000009515964, y: 0.51418054, z: -0.00004237393}
+  m_Size: {x: 0.1550918, y: 1.6922761, z: 0.36413294}
+  m_Center: {x: -0.008075624, y: 0.44257435, z: -0.023672746}
 --- !u!114 &6606600584644958383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedc8ec0b3605514baaa99d05399b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   currentWeaponDamage: 100
+  dmgup: 0
 --- !u!1 &8191580931042589557
 GameObject:
   m_ObjectHideFlags: 0
