@@ -9,7 +9,7 @@ namespace SG
         public Collider damageCollider;
 
         public int currentWeaponDamage = 25;
-        public int dmgup;
+        public int dmgup = 25;
 
         private void Awake()
         {
