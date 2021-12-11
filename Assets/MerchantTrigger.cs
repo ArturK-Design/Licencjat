@@ -268,9 +268,11 @@ namespace SG
         private void StartScreen()
         {
             //StartScreen.SetActive(true);
+            playerUI.SetActive(false);
             StartScreenUI.GetComponent<Animator>().enabled = true;
             StartScreenUI.GetComponent<Animator>().Play("StartFadeOut");
             StartScreenUI.SetActive(false);
+            Cursor.visible = true;
         }
 
     }

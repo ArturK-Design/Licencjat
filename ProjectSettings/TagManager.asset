@@ -14,6 +14,7 @@ TagManager:
   - Count
   - Stage2Blocker
   - Stage3Blocker
+  - Camera
   layers:
   - Default
   - TransparentFX
