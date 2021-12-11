@@ -9,13 +9,13 @@ namespace SG
     {
         Animator animator;
         public Text enemyCount;
-
+        
         public int goldAwardedOnDeatch;
 
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
-            enemyCount = GameObject.Find("PlayerUI/EnemyCount").GetComponent<Text>();
+            enemyCount = GameObject.Find("PlayerUI/EnemyCount").GetComponent<Text>();           
         }
 
         void Start()

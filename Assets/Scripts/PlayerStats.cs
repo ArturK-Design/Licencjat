@@ -61,6 +61,7 @@ namespace SG
                 DeathScreen.SetActive(true);
                 DeathScreen.GetComponent<Animator>().enabled = true;
                 DeathScreen.GetComponent<Animator>().Play("FinalScreenFadeIn");
+                Cursor.visible = true;
                 //HANDLE PLAYER DEATH
             }
         }
