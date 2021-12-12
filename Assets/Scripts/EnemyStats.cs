@@ -70,7 +70,7 @@ namespace SG
         IEnumerator deadTime()
         {
             
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
             //Debug.Log("dead");
             this.gameObject.SetActive(false);
         }
