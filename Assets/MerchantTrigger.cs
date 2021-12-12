@@ -47,6 +47,7 @@ namespace SG
         public GameObject lastGate;
         public GameObject StartScreenUI;
         public GameObject maxEnemiesOnStage;
+        private bool healBought = false;
 
         public void Start()
         {            
@@ -89,8 +90,11 @@ namespace SG
             if (other.tag == "Player")
             {
                 nearMerchant = false;
-                InteractProp.SetActive(false);                
+                InteractProp.SetActive(false);
+                healBought = false;
             }
+
+            
         }
 
         public void MerchantClose()
@@ -100,6 +104,12 @@ namespace SG
             playerUI.SetActive(true);
             Time.timeScale = 1f;
             Cursor.visible = false;
+
+            if (healBought == true)
+            {
+                PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+                playerStats.healAlways();
+            }
         }
         public void MerchantOpen()
         {
@@ -275,6 +285,11 @@ namespace SG
             StartScreenUI.GetComponent<Animator>().Play("StartFadeOut");
             StartScreenUI.SetActive(false);
             Cursor.visible = true;
+        }
+
+        public void healFix()
+        {
+            healBought = true;
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SG
 {
@@ -10,7 +11,7 @@ namespace SG
         StaminaBar staminaBar;
         AnimatorHandler animatorHandler;
         public GameObject DeathScreen;
-              
+                     
 
         private void Awake()
         {
@@ -25,7 +26,7 @@ namespace SG
             currentHealth = maxHealth;
             healthBar.SetMaxHealth(maxHealth);
             healthBar.SetCurrentHealth(currentHealth);
-
+            
             maxStamina = SetMaxStaminaFromStaminaLevel();
             currentStamina = maxStamina;
             staminaBar.SetMaxStamina(maxStamina);
@@ -95,6 +96,14 @@ namespace SG
             }
         }
 
+        public void healAlways()
+        {
+            currentHealth = maxHealth;
+            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetCurrentHealth(currentHealth);
+            Debug.Log("wyleczono mimo że kupiłeś heala na końcu");
+        }
+
         public void maxHealthUp()
         {
             if (goldCount >= 50)
@@ -102,6 +111,8 @@ namespace SG
                 healthLevel = healthLevel + 1;
                 SetMaxHealthFromHealthLevel();
                 goldCount = goldCount - 50;
+                healthBar.SetMaxHealth(maxHealth);
+                healthBar.SetCurrentHealth(currentHealth);
                 //Debug.Log("Dodano maxymalne żyćko" + "a hajsu został" + goldCount);
             }
             else
