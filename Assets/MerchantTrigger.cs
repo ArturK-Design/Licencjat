@@ -46,6 +46,7 @@ namespace SG
         public bool enteredBossArena = false;
         public GameObject lastGate;
         public GameObject StartScreenUI;
+        public GameObject maxEnemiesOnStage;
 
         public void Start()
         {            
@@ -54,6 +55,7 @@ namespace SG
             healButton = healBuy.GetComponent<Button>();
             keyButton = keyBuy.GetComponent<Button>();
             moneyCount = player.GetComponent<PlayerStats>().goldCount;
+            maxEnemiesOnStage.GetComponent<Text>().text = "10";
             //string text = enemyManagerStage1.GetComponent<EnemyCount>().enemyCount.text;
             //enemies = text.ToString();
             //stage2Blocker = GameObject.FindGameObjectWithTag("Stage2Blocker");
