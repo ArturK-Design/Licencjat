@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SG
 {
@@ -18,6 +19,8 @@ namespace SG
         public GameObject EnemyManagerStage3;
         public GameObject GateLeft;
         public GameObject GateRight;
+        public GameObject maxEnemiesOnStage;
+        private string numOfEnemies;
 
         public void Start()
         {
@@ -27,6 +30,7 @@ namespace SG
             GateRight.GetComponent<Animator>().Play("FenceRightOpen");
             //GateLeft.GetComponent<Animator>().enabled = false;
             //GateRight.GetComponent<Animator>().enabled = false;
+            numOfEnemies = maxEnemiesOnStage.GetComponent<Text>().text;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -37,6 +41,7 @@ namespace SG
                 Merchant.transform.position = new Vector3(-15.821f, 9.897f, 78.08f);
                 EnemyManagerStage1.SetActive(false);
                 EnemyManagerStage2.SetActive(true);
+                numOfEnemies = maxEnemiesOnStage.GetComponent<Text>().text = "12";
                 //MerchantActivator.GetComponent<MerchantTrigger>().Stage2Enter();
             }
             else
@@ -46,6 +51,7 @@ namespace SG
                     Stage3Blocker.SetActive(true);
                     EnemyManagerStage2.SetActive(false);
                     EnemyManagerStage3.SetActive(true);
+                    numOfEnemies = maxEnemiesOnStage.GetComponent<Text>().text = "5";
                 }
             }
         }
