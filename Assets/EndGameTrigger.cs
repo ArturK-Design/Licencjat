@@ -7,6 +7,7 @@ public class EndGameTrigger : MonoBehaviour
     // Start is called before the first frame update
     public GameObject EndGameScreen;
     public GameObject playerUI;
+    public GameObject objective;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -17,6 +18,7 @@ public class EndGameTrigger : MonoBehaviour
             EndGameScreen.GetComponent<Animator>().Play("FinalScreenFadeIn");
             Cursor.visible = true;
             playerUI.SetActive(false);
+            objective.SetActive(false);
         }
     }
 }

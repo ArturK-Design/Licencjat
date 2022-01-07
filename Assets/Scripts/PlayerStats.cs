@@ -29,7 +29,7 @@ namespace SG
             
             maxStamina = SetMaxStaminaFromStaminaLevel();
             currentStamina = maxStamina;
-            staminaBar.SetMaxStamina(maxStamina);
+            //staminaBar.SetMaxStamina(maxStamina);
             staminaBar.SetCurrentStamina(currentStamina);
         }
                 

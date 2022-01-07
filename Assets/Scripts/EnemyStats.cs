@@ -65,6 +65,9 @@ namespace SG
                 }
             }
             StartCoroutine(deadTime());
+            InputHandler inputhandler = FindObjectOfType<InputHandler>();
+            inputhandler.ClearLockOn();
+
         }
 
         IEnumerator deadTime()
