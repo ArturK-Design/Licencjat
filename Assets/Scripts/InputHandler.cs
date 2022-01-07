@@ -146,10 +146,10 @@ namespace SG
                 }
             }
 
-            if (rt_Input)
-            {
-                playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
-            }
+           // if (rt_Input)
+           // {
+             //   playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+           // }
         }
 
         private void HandleQuickSlotsInput()
@@ -224,5 +224,13 @@ namespace SG
                 }
             }
         }
+        public void ClearLockOn()
+        {
+            lockOnInput = false;
+            lockOnFlag = false;
+            cameraHolder.ClearLockOnTargets();
+        }
     }
+
+      
 }
